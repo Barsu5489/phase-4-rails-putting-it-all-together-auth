@@ -13,9 +13,9 @@ class UsersController < ApplicationController
     def show
       if session[:user_id].present?
         user = User.find(session[:user_id])
-        render json: user
+        render json: user, status: :created
       else
-        render json: { error: "Not Authorized" }, status: :unauthorized
+        render json: { errors: ["Not Authorized"] }, status: :unauthorized
       end
     end
   
